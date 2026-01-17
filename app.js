@@ -1,3 +1,4 @@
+// Necessary Imports 
 const express = require('express');
 const connectDB = require('./config/db');
 const noteRoutes = require('./Routes/noteRoutes');
