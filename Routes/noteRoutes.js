@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const authMiddleware = require("../middleware/authMiddleWare");
+const authMiddleware = require("../middleware/authMiddleware");
+const validateNote = require("../middleware/validateNotes");
 const {
     getAllNotes,
     getNoteById,
@@ -16,7 +17,7 @@ router.get('/', getAllNotes)
 router.get('/:id', getNoteById)
 
 //POST new note
-router.post('/', authMiddleware, createNote)
+router.post('/', authMiddleware, validateNote, createNote)
 
 //PATCH note
 router.patch('/:id',authMiddleware, updateNote)
