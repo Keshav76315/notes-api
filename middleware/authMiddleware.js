@@ -1,5 +1,9 @@
 const jwt = require('jsonwebtoken');
 
+if (!process.env.JWT_SECRET) {
+    throw new Error('JWT_SECRET environment variable is not set');
+}
+
 const authMiddleware = async (req,res,next) => {
     const authHeader = req.headers.authorization;
 
@@ -15,7 +19,7 @@ const authMiddleware = async (req,res,next) => {
         next()
     }
     catch(err) {
-        res.status(401).json({error: "Invalid token"});
+        return res.status(401).json({error: "Invalid token"});
     }
 }
 
